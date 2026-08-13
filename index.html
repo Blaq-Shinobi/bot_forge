@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BotForge - Build Telegram Bots Without Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">&#9881;</span>
+                <span class="logo-text">BotForge</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+                <a href="pages/login.html" class="btn btn-ghost">Log In</a>
+                <a href="pages/signup.html" class="btn btn-primary">Start Free</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-badge">No coding required</div>
+            <h1 class="hero-title">
+                Build Powerful Telegram Bots<br>
+                <span class="gradient-text">In Minutes, Not Weeks</span>
+            </h1>
+            <p class="hero-subtitle">
+                Create custom Telegram bots with auto-replies, commands, scheduled messages, 
+                and integrations — all through a simple visual builder. No developers needed.
+            </p>
+            <div class="hero-cta">
+                <a href="pages/signup.html" class="btn btn-primary btn-lg">Build Your Bot Free</a>
+                <a href="#how-it-works" class="btn btn-outline btn-lg">See How It Works</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">2,400+</span>
+                    <span class="stat-label">Bots Created</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">850+</span>
+                    <span class="stat-label">Active Users</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">99.9%</span>
+                    <span class="stat-label">Uptime</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="bot-preview-card">
+                <div class="preview-header">
+                    <div class="preview-dot"></div>
+                    <span>@YourBot</span>
+                </div>
+                <div class="preview-chat">
+                    <div class="chat-msg user">Hi! What can you do?</div>
+                    <div class="chat-msg bot">Welcome! I can help you with:<br>&#8226; Answer questions<br>&#8226; Process orders<br>&#8226; Send updates</div>
+                    <div class="chat-msg user">Show me pricing</div>
+                    <div class="chat-msg bot">Here are our plans: [View Plans]</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Features</span>
+                <h2>Everything You Need to Build Smart Bots</h2>
+                <p>Powerful features wrapped in a simple interface anyone can use.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">&#9889;</div>
+                    <h3>Auto-Replies</h3>
+                    <p>Set up instant responses to common messages. Support text, images, buttons, and media.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128172;</div>
+                    <h3>Custom Commands</h3>
+                    <p>Define /start, /help, /pricing and any custom commands with rich responses.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128197;</div>
+                    <h3>Scheduled Messages</h3>
+                    <p>Send automated messages on a schedule — daily tips, reminders, or promotions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128200;</div>
+                    <h3>Analytics Dashboard</h3>
+                    <p>Track users, messages, engagement, and growth with real-time analytics.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#127912;</div>
+                    <h3>Inline Keyboards</h3>
+                    <p>Create interactive button menus for navigation, forms, and user flows.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128279;</div>
+                    <h3>Webhooks & APIs</h3>
+                    <p>Connect your bot to external services, databases, or payment processors.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128274;</div>
+                    <h3>User Management</h3>
+                    <p>Block spam, whitelist users, create VIP tiers, and manage access control.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#127760;</div>
+                    <h3>Multi-Language</h3>
+                    <p>Serve users in their language with built-in multi-language support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">How It Works</span>
+                <h2>Launch Your Bot in 3 Steps</h2>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Connect Your Bot</h3>
+                    <p>Create a bot with @BotFather on Telegram, then paste the token into BotForge.</p>
+                </div>
+                <div class="step-arrow">&#8594;</div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Configure Behavior</h3>
+                    <p>Use our visual builder to set up commands, auto-replies, buttons, and workflows.</p>
+                </div>
+                <div class="step-arrow">&#8594;</div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Go Live</h3>
+                    <p>Click deploy and your bot is live. Monitor everything from your dashboard.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Pricing</span>
+                <h2>Simple, Transparent Pricing</h2>
+                <p>Start free. Upgrade when your bot grows.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Free</h3>
+                        <div class="price">$0<span>/month</span></div>
+                        <p>Perfect for trying things out</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="included">1 Bot</li>
+                        <li class="included">5 Commands</li>
+                        <li class="included">10 Auto-Replies</li>
+                        <li class="included">100 Messages/Day</li>
+                        <li class="excluded">Scheduled Messages</li>
+                        <li class="excluded">Analytics</li>
+                        <li class="excluded">Webhooks</li>
+                    </ul>
+                    <a href="pages/signup.html" class="btn btn-outline btn-block" id="free-btn">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Pro</h3>
+                        <div class="price">$9<span>/month</span></div>
+                        <p>For growing bots and businesses</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="included">5 Bots</li>
+                        <li class="included">Unlimited Commands</li>
+                        <li class="included">Unlimited Auto-Replies</li>
+                        <li class="included">10,000 Messages/Day</li>
+                        <li class="included">Scheduled Messages</li>
+                        <li class="included">Analytics Dashboard</li>
+                        <li class="excluded">Webhooks & API</li>
+                    </ul>
+                    <button class="btn btn-primary btn-block" id="pro-btn" onclick="handleUpgrade('pro')">Upgrade to Pro</button>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Business</h3>
+                        <div class="price">$29<span>/month</span></div>
+                        <p>For teams and high-volume bots</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="included">Unlimited Bots</li>
+                        <li class="included">Unlimited Commands</li>
+                        <li class="included">Unlimited Auto-Replies</li>
+                        <li class="included">Unlimited Messages</li>
+                        <li class="included">Scheduled Messages</li>
+                        <li class="included">Advanced Analytics</li>
+                        <li class="included">Webhooks & API</li>
+                    </ul>
+                    <button class="btn btn-outline btn-block" id="business-btn" onclick="handleUpgrade('business')">Upgrade to Business</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">FAQ</span>
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>Do I need any coding experience?</summary>
+                    <p>Not at all! BotForge is designed for non-technical users. Everything is configured through a visual interface with simple forms and drag-and-drop.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>How fast can I set up a bot?</summary>
+                    <p>Most users have their first bot running in under 5 minutes. Just connect your BotFather token, configure a few responses, and deploy.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Can I use my own server?</summary>
+                    <p>Pro and Business plans include the option to export your bot configuration as Python code that you can self-host if you prefer.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Is there a free trial for paid plans?</summary>
+                    <p>Yes! Both Pro and Business plans include a 14-day free trial. No credit card required to start.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Can bots accept payments?</summary>
+                    <p>Yes. Business plan bots can integrate with Telegram Payments, Stripe, and other processors to accept payments directly in chat.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container cta-content">
+            <h2>Ready to Build Your First Bot?</h2>
+            <p>Join 850+ users who are already saving time with BotForge.</p>
+            <a href="pages/signup.html" class="btn btn-primary btn-lg">Get Started Free</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">&#9881;</span>
+                    <span class="logo-text">BotForge</span>
+                </a>
+                <p>Build Telegram bots without writing a single line of code.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="#features">Features</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="#">Documentation</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Templates</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 BotForge. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        async function handleUpgrade(plan) {
+            // If not logged in, redirect to signup first
+            if (!api._token()) {
+                window.location.href = 'pages/signup.html?plan=' + plan;
+                return;
+            }
+            try {
+                const btn = document.getElementById(plan + '-btn');
+                btn.textContent = 'Redirecting to checkout...';
+                btn.disabled = true;
+                await api.upgradeTo(plan);
+            } catch (err) {
+                alert(err.message || 'Failed to start checkout. Make sure Stripe is configured.');
+                const btn = document.getElementById(plan + '-btn');
+                btn.textContent = plan === 'pro' ? 'Upgrade to Pro' : 'Upgrade to Business';
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

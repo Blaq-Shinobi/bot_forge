@@ -234,18 +234,8 @@
             alert('To manage your subscription, contact support or visit your Paystack dashboard.');
         }
 
-        async function handleUpgradeFromDashboard() {
-            try {
-                const btn = document.getElementById('upgrade-btn');
-                btn.textContent = 'Redirecting...';
-                btn.disabled = true;
-                await api.upgradeTo('pro');
-            } catch (err) {
-                alert(err.message || 'Failed to start checkout.');
-                const btn = document.getElementById('upgrade-btn');
-                btn.textContent = 'Upgrade Plan';
-                btn.disabled = false;
-            }
+        function handleUpgradeFromDashboard() {
+            window.location.href = 'upgrade.html?plan=pro';
         }
 
         // Load billing status

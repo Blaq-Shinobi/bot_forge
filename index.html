@@ -314,19 +314,8 @@
                 window.location.href = 'pages/signup.html?plan=' + plan;
                 return;
             }
-            try {
-                const btn = document.getElementById(plan + '-btn');
-                btn.textContent = 'Redirecting to checkout...';
-                btn.disabled = true;
-                await api.upgradeTo(plan);
-            } catch (err) {
-                alert(err.message || 'Failed to start checkout. Make sure Stripe is configured.');
-                const btn = document.getElementById(plan + '-btn');
-                btn.textContent = plan === 'pro' ? 'Upgrade to Pro' : 'Upgrade to Business';
-                btn.disabled = false;
-            }
+            window.location.href = 'pages/upgrade.html?plan=' + plan;
         }
     </script>
 </body>
 </html>
-

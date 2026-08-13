@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BotForge - Upgrade Your Plan</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .upgrade-wrap { max-width: 560px; margin: 0 auto; padding: 48px 24px 80px; }
+        .upgrade-wrap .logo { justify-content: center; margin-bottom: 32px; }
+        .plan-badge {
+            display: inline-block;
+            background: var(--accent-glow);
+            color: var(--accent);
+            border: 1px solid rgba(42, 171, 238, 0.3);
+            padding: 4px 14px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .upgrade-wrap h1 { font-size: 1.7rem; font-weight: 800; margin-bottom: 6px; }
+        .upgrade-wrap .subtitle { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 28px; }
+        .bank-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        .bank-card h2 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        .bank-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .bank-row:last-child { border-bottom: none; }
+        .bank-row .label { color: var(--text-secondary); font-size: 0.9rem; }
+        .bank-row .value { font-weight: 700; font-size: 0.98rem; }
+        .copy-btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            font-size: 0.78rem;
+            padding: 5px 12px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-family: var(--font);
+        }
+        .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .steps-list { margin: 0; padding-left: 20px; color: var(--text-secondary); font-size: 0.9rem; }
+        .steps-list li { margin-bottom: 8px; }
+        .steps-list strong { color: var(--text-primary); }
+        .upgrade-wrap .form-group label:first-child { margin-top: 0; }
+        .file-drop {
+            border: 1.5px dashed var(--border);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            cursor: pointer;
+            background: var(--bg-secondary);
+        }
+        .file-drop.has-file { border-color: var(--success); color: var(--success); }
+        input[type=file] { display: none; }
+        .note { font-size: 0.8rem; color: var(--text-muted); margin-top: 14px; text-align: center; }
+        .success-view { display: none; text-align: center; padding: 40px 20px; }
+        .success-view .check {
+            width: 56px; height: 56px;
+            background: rgba(34,197,94,0.15);
+            border: 1px solid rgba(34,197,94,0.3);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 26px;
+            color: var(--success);
+        }
+        .success-view h2 { font-size: 1.3rem; margin-bottom: 8px; }
+        .success-view p { color: var(--text-secondary); font-size: 0.9rem; }
+        .error-msg {
+            display: none;
+            background: rgba(239,68,68,0.1);
+            border: 1px solid rgba(239,68,68,0.3);
+            color: #fca5a5;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            margin-top: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="upgrade-wrap">
+        <a href="../index.html" class="logo">
+            <span class="logo-icon">&#9881;</span>
+            <span class="logo-text">BotForge</span>
+        </a>
+
+        <div id="formView">
+            <span class="plan-badge" id="planBadge">Upgrading to Pro — $9/month</span>
+            <h1>Complete your upgrade</h1>
+            <p class="subtitle">Pay by bank transfer below, then confirm your payment. We'll activate your plan within a few hours.</p>
+
+            <div class="bank-card">
+                <h2>Bank Details</h2>
+                <div class="bank-row">
+                    <span class="label">Account Name</span>
+                    <span class="value" id="accName">Your Name / Business Name</span>
+                </div>
+                <div class="bank-row">
+                    <span class="label">Account Number</span>
+                    <span class="value" id="accNumber">0000000000</span>
+                    <button class="copy-btn" onclick="copyText('accNumber')">Copy</button>
+                </div>
+                <div class="bank-row">
+                    <span class="label">Bank</span>
+                    <span class="value" id="bankName">Your Bank</span>
+                </div>
+            </div>
+
+            <div class="bank-card">
+                <h2>How it works</h2>
+                <ol class="steps-list">
+                    <li><strong>Transfer</strong> the exact plan amount to the account above.</li>
+                    <li><strong>Screenshot</strong> your payment confirmation or receipt.</li>
+                    <li><strong>Submit it below</strong> — we'll verify and activate your plan, usually within a few hours.</li>
+                </ol>
+            </div>
+
+            <div class="bank-card">
+                <h2>Confirm Your Payment</h2>
+                <form id="paymentForm">
+                    <div class="form-group">
+                        <label for="plan">Plan</label>
+                        <select id="plan" name="plan" required>
+                            <option value="Pro - $9/month">Pro — $9/month</option>
+                            <option value="Business - $29/month">Business — $29/month</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email used to sign up</label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telegram">Telegram username (optional)</label>
+                        <input type="text" id="telegram" name="telegram" placeholder="@yourusername">
+                    </div>
+                    <div class="form-group">
+                        <label>Payment screenshot</label>
+                        <div class="file-drop" id="fileDrop" onclick="document.getElementById('proof').click()">
+                            Tap to upload screenshot (JPG or PNG)
+                        </div>
+                        <input type="file" id="proof" name="proof" accept="image/*" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-lg" id="submitBtn" style="margin-top: 8px;">Submit Payment</button>
+                    <div class="error-msg" id="errorMsg">Something went wrong. Please try again.</div>
+                    <p class="note">Your plan is activated manually after verification — this usually takes a few hours.</p>
+                </form>
+            </div>
+        </div>
+
+        <div class="success-view" id="successView">
+            <div class="check">&#10003;</div>
+            <h2>Payment submitted</h2>
+            <p>We've received your payment proof. Your plan will be activated within a few hours — you'll get an email once it's live.</p>
+            <a href="dashboard.html" class="btn btn-outline" style="margin-top: 20px;">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <script>
+        // ---- EDIT THESE THREE VALUES WITH YOUR ACTUAL BANK DETAILS ----
+        document.getElementById('accName').textContent = "Godswill LuckyNlerem Uchechi";
+        document.getElementById('accNumber').textContent = "0444402345";
+        document.getElementById('bankName').textContent = "Wema Bank";
+        // -----------------------------------------------------------------
+
+        // ---- REPLACE WITH YOUR OWN FORMSPREE ENDPOINT ----
+        const FORM_ENDPOINT = "https://formspree.io/f/xvkpryyo";
+        // ---------------------------------------------------
+
+        // Pre-select plan from URL (?plan=pro or ?plan=business)
+        const params = new URLSearchParams(window.location.search);
+        const planParam = params.get('plan');
+        if (planParam) {
+            const planSelect = document.getElementById('plan');
+            const badge = document.getElementById('planBadge');
+            if (planParam === 'business') {
+                planSelect.value = 'Business - $29/month';
+                badge.textContent = 'Upgrading to Business — $29/month';
+            } else {
+                planSelect.value = 'Pro - $9/month';
+                badge.textContent = 'Upgrading to Pro — $9/month';
+            }
+        }
+        document.getElementById('plan').addEventListener('change', (e) => {
+            document.getElementById('planBadge').textContent = 'Upgrading to ' + e.target.value.replace(' - ', ' — ');
+        });
+
+        function copyText(id) {
+            const text = document.getElementById(id).textContent;
+            navigator.clipboard.writeText(text);
+            const btn = event.target;
+            const old = btn.textContent;
+            btn.textContent = "Copied";
+            setTimeout(() => btn.textContent = old, 1200);
+        }
+
+        const fileInput = document.getElementById('proof');
+        const fileDrop = document.getElementById('fileDrop');
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length) {
+                fileDrop.textContent = "\u2713 " + fileInput.files[0].name;
+                fileDrop.classList.add('has-file');
+            }
+        });
+
+        const form = document.getElementById('paymentForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const errorMsg = document.getElementById('errorMsg');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            errorMsg.style.display = 'none';
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Submitting...";
+
+            const data = new FormData(form);
+
+            try {
+                const res = await fetch(FORM_ENDPOINT, {
+                    method: 'POST',
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (res.ok) {
+                    document.getElementById('formView').style.display = 'none';
+                    document.getElementById('successView').style.display = 'block';
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (err) {
+                errorMsg.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Submit Payment";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BotForge - Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <a href="../index.html" class="logo">
+                    <span class="logo-icon">&#9881;</span>
+                    <span class="logo-text">BotForge</span>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="active">
+                    <span class="nav-icon">&#9632;</span> Dashboard
+                </a>
+                <a href="builder.html">
+                    <span class="nav-icon">&#9881;</span> Bot Builder
+                </a>
+                <a href="#">
+                    <span class="nav-icon">&#128200;</span> Analytics
+                </a>
+                <a href="#">
+                    <span class="nav-icon">&#128100;</span> Users
+                </a>
+                <a href="#">
+                    <span class="nav-icon">&#128218;</span> Templates
+                </a>
+                <a href="#">
+                    <span class="nav-icon">&#9881;</span> Settings
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="page-header">
+                <h1>Dashboard</h1>
+                <a href="builder.html" class="btn btn-primary">+ New Bot</a>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="label">Total Bots</div>
+                    <div class="value">3</div>
+                    <div class="change up">+1 this week</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Total Users</div>
+                    <div class="value">1,247</div>
+                    <div class="change up">+12% this month</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Messages Today</div>
+                    <div class="value">3,891</div>
+                    <div class="change up">+8% vs yesterday</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Plan</div>
+                    <div class="value" style="color: var(--accent);">Free</div>
+                    <div class="change"><a href="../index.html#pricing">Upgrade</a></div>
+                </div>
+            </div>
+
+            <!-- Bot List -->
+            <h2 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 16px;">Your Bots</h2>
+            <div class="bot-list">
+                <div class="bot-item">
+                    <div class="bot-info">
+                        <div class="bot-avatar">&#129302;</div>
+                        <div>
+                            <div class="bot-name">ShopAssist Bot</div>
+                            <div class="bot-handle">@shop_assist_bot</div>
+                        </div>
+                    </div>
+                    <div class="bot-status active">
+                        <span class="bot-status-dot"></span> Active
+                    </div>
+                    <div class="bot-actions">
+                        <a href="builder.html" class="btn btn-outline btn-sm">Edit</a>
+                        <button class="btn btn-ghost btn-sm">Stats</button>
+                    </div>
+                </div>
+                <div class="bot-item">
+                    <div class="bot-info">
+                        <div class="bot-avatar">&#128276;</div>
+                        <div>
+                            <div class="bot-name">CryptoAlerts Bot</div>
+                            <div class="bot-handle">@crypto_alerts_bot</div>
+                        </div>
+                    </div>
+                    <div class="bot-status active">
+                        <span class="bot-status-dot"></span> Active
+                    </div>
+                    <div class="bot-actions">
+                        <a href="builder.html" class="btn btn-outline btn-sm">Edit</a>
+                        <button class="btn btn-ghost btn-sm">Stats</button>
+                    </div>
+                </div>
+                <div class="bot-item">
+                    <div class="bot-info">
+                        <div class="bot-avatar">&#128218;</div>
+                        <div>
+                            <div class="bot-name">SupportDesk Bot</div>
+                            <div class="bot-handle">@support_desk_bot</div>
+                        </div>
+                    </div>
+                    <div class="bot-status inactive">
+                        <span class="bot-status-dot"></span> Paused
+                    </div>
+                    <div class="bot-actions">
+                        <a href="builder.html" class="btn btn-outline btn-sm">Edit</a>
+                        <button class="btn btn-ghost btn-sm">Stats</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div style="margin-top: 40px;">
+                <h2 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 16px;">Quick Actions</h2>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <a href="builder.html" class="btn btn-outline">+ Create New Bot</a>
+                    <a href="#" class="btn btn-outline">Browse Templates</a>
+                    <button class="btn btn-outline" id="manage-billing-btn" onclick="handleManageBilling()" style="display:none;">Manage Subscription</button>
+                    <button class="btn btn-primary" id="upgrade-btn" onclick="handleUpgradeFromDashboard()" style="display:none;">Upgrade Plan</button>
+                </div>
+            </div>
+
+            <!-- Billing Info -->
+            <div style="margin-top: 40px;" id="billing-section">
+                <h2 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 16px;">Billing</h2>
+                <div class="stat-card" style="max-width: 500px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div class="label">Current Plan</div>
+                            <div class="value" id="billing-plan" style="color: var(--accent);">Free</div>
+                        </div>
+                        <div id="billing-actions"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/api.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+        (async function loadDashboard() {
+            // Check auth
+            if (!api._token()) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                // Load stats
+                const stats = await api.getStats();
+                document.querySelector('.stats-grid').innerHTML = `
+                    <div class="stat-card">
+                        <div class="label">Total Bots</div>
+                        <div class="value">${stats.total_bots}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="label">Active Bots</div>
+                        <div class="value">${stats.active_bots}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="label">Running Now</div>
+                        <div class="value">${stats.running_bots}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="label">Plan</div>
+                        <div class="value" style="color: var(--accent);">${stats.plan.charAt(0).toUpperCase() + stats.plan.slice(1)}</div>
+                        <div class="change"><a href="../index.html#pricing">Upgrade</a></div>
+                    </div>
+                `;
+
+                // Load bots
+                const bots = await api.listBots();
+                const botList = document.querySelector('.bot-list');
+                if (bots.length === 0) {
+                    botList.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 40px;">No bots yet. Create your first one!</p>';
+                    return;
+                }
+                botList.innerHTML = bots.map(bot => `
+                    <div class="bot-item">
+                        <div class="bot-info">
+                            <div class="bot-avatar">&#129302;</div>
+                            <div>
+                                <div class="bot-name">${bot.name}</div>
+                                <div class="bot-handle">#${bot.id}</div>
+                            </div>
+                        </div>
+                        <div class="bot-status ${bot.status === 'active' ? 'active' : 'inactive'}">
+                            <span class="bot-status-dot"></span> ${bot.status.charAt(0).toUpperCase() + bot.status.slice(1)}
+                        </div>
+                        <div class="bot-actions">
+                            <a href="builder.html?id=${bot.id}" class="btn btn-outline btn-sm">Edit</a>
+                            <button class="btn btn-ghost btn-sm" onclick="toggleBot(${bot.id}, '${bot.status}')">
+                                ${bot.status === 'active' ? 'Stop' : 'Start'}
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                console.error('Dashboard load error:', err);
+                if (err.message.includes('401') || err.message.includes('token')) {
+                    api.logout();
+                }
+            }
+        })();
+
+        async function toggleBot(botId, currentStatus) {
+            try {
+                if (currentStatus === 'active') {
+                    await api.stopBot(botId);
+                } else {
+                    await api.startBot(botId);
+                }
+                location.reload();
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        async function handleManageBilling() {
+            alert('To manage your subscription, contact support or visit your Paystack dashboard.');
+        }
+
+        async function handleUpgradeFromDashboard() {
+            try {
+                const btn = document.getElementById('upgrade-btn');
+                btn.textContent = 'Redirecting...';
+                btn.disabled = true;
+                await api.upgradeTo('pro');
+            } catch (err) {
+                alert(err.message || 'Failed to start checkout.');
+                const btn = document.getElementById('upgrade-btn');
+                btn.textContent = 'Upgrade Plan';
+                btn.disabled = false;
+            }
+        }
+
+        // Load billing status
+        async function loadBilling() {
+            try {
+                const billing = await api.getBillingStatus();
+                const planEl = document.getElementById('billing-plan');
+                const actionsEl = document.getElementById('billing-actions');
+                const upgradeBtn = document.getElementById('upgrade-btn');
+
+                planEl.textContent = billing.plan.charAt(0).toUpperCase() + billing.plan.slice(1);
+
+                if (billing.has_subscription) {
+                    actionsEl.innerHTML = '<span style="color:#10b981;font-weight:600;">\u2713 Active</span>';
+                    upgradeBtn.style.display = 'none';
+                    document.getElementById('manage-billing-btn').style.display = 'inline-flex';
+                } else if (billing.plan === 'free') {
+                    upgradeBtn.style.display = 'inline-flex';
+                    actionsEl.innerHTML = '<a href="../index.html#pricing" class="btn btn-primary btn-sm">View Plans</a>';
+                }
+
+                // Show upgrade success message if redirected back from Stripe
+                const params = new URLSearchParams(window.location.search);
+                if (params.get('upgrade') === 'success') {
+                    const banner = document.createElement('div');
+                    banner.style.cssText = 'background:#10b981;color:white;padding:12px 20px;border-radius:8px;margin-bottom:20px;font-weight:600;';
+                    banner.textContent = '\u2713 Upgrade successful! Your plan has been updated.';
+                    document.querySelector('.main-content').prepend(banner);
+                    setTimeout(() => banner.remove(), 5000);
+                }
+            } catch (err) {
+                console.error('Billing load error:', err);
+            }
+        }
+        loadBilling();
+    </script>
+</body>
+</html>

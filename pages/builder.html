@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BotForge - Bot Builder</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <a href="../index.html" class="logo">
+                    <span class="logo-icon">&#9881;</span>
+                    <span class="logo-text">BotForge</span>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html">
+                    <span class="nav-icon">&#9632;</span> Dashboard
+                </a>
+                <a href="builder.html" class="active">
+                    <span class="nav-icon">&#9881;</span> Bot Builder
+                </a>
+                <a href="#">
+                    <span class="nav-icon">&#128200;</span> Analytics
+                </a>
+                <a href="#">
+                    <span class="nav-icon">&#128100;</span> Users
+                </a>
+                <a href="#">
+                    <span class="nav-icon">&#128218;</span> Templates
+                </a>
+                <a href="#">
+                    <span class="nav-icon">&#9881;</span> Settings
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="page-header">
+                <h1>Bot Builder</h1>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn btn-outline" onclick="exportConfig()">Export Config</button>
+                    <button class="btn btn-primary" onclick="saveBot()">Save & Deploy</button>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab active" data-tab="tab-general">General</button>
+                <button class="tab" data-tab="tab-commands">Commands</button>
+                <button class="tab" data-tab="tab-autoreplies">Auto-Replies</button>
+                <button class="tab" data-tab="tab-schedule">Scheduled</button>
+            </div>
+
+            <div class="builder-layout">
+                <!-- Configuration Panel -->
+                <div>
+                    <!-- General Tab -->
+                    <div class="tab-content active" id="tab-general">
+                        <div class="builder-panel">
+                            <h2>General Settings</h2>
+                            <div class="form-group">
+                                <label for="botName">Bot Name</label>
+                                <input type="text" id="botName" placeholder="My Awesome Bot" value="MyBot">
+                            </div>
+                            <div class="form-group">
+                                <label for="botToken">BotFather Token</label>
+                                <input type="password" id="botToken" placeholder="123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11">
+                            </div>
+                            <div class="form-group">
+                                <label for="botDescription">Description</label>
+                                <textarea id="botDescription" placeholder="What does your bot do?">A helpful Telegram bot for my business.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="welcomeMessage">Welcome Message</label>
+                                <textarea id="welcomeMessage" placeholder="Sent when users say hi or start the bot">Hello! Welcome to my bot. How can I help you today?</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="fallbackMessage">Fallback Message</label>
+                                <textarea id="fallbackMessage" placeholder="Sent when no match is found">Sorry, I didn't understand that. Try /help to see what I can do!"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Commands Tab -->
+                    <div class="tab-content" id="tab-commands">
+                        <div class="builder-panel">
+                            <h2>Commands</h2>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">
+                                Define commands that users can type (e.g., /start, /help, /pricing) and the bot's response.
+                            </p>
+                            <div id="commandsList">
+                                <div class="command-row">
+                                    <input type="text" placeholder="/command" class="cmd-input" value="/start">
+                                    <input type="text" placeholder="Bot response..." class="cmd-response" value="Welcome! I'm here to help. Type /help for options.">
+                                    <button class="btn btn-danger btn-sm" onclick="this.parentElement.remove()">X</button>
+                                </div>
+                                <div class="command-row">
+                                    <input type="text" placeholder="/command" class="cmd-input" value="/help">
+                                    <input type="text" placeholder="Bot response..." class="cmd-response" value="Available commands: /start, /help, /pricing, /contact">
+                                    <button class="btn btn-danger btn-sm" onclick="this.parentElement.remove()">X</button>
+                                </div>
+                                <div class="command-row">
+                                    <input type="text" placeholder="/command" class="cmd-input" value="/pricing">
+                                    <input type="text" placeholder="Bot response..." class="cmd-response" value="Our plans: Basic $9/mo, Pro $19/mo, Enterprise - contact us.">
+                                    <button class="btn btn-danger btn-sm" onclick="this.parentElement.remove()">X</button>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline btn-sm" onclick="addCommand()" style="margin-top: 8px;">+ Add Command</button>
+                        </div>
+                    </div>
+
+                    <!-- Auto-Replies Tab -->
+                    <div class="tab-content" id="tab-autoreplies">
+                        <div class="builder-panel">
+                            <h2>Auto-Replies</h2>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">
+                                When a user's message contains a keyword, the bot replies automatically.
+                            </p>
+                            <div id="autoRepliesList">
+                                <div class="reply-row">
+                                    <input type="text" placeholder="Trigger keyword..." class="trigger-input" value="price">
+                                    <input type="text" placeholder="Auto reply..." class="reply-input" value="Check our pricing with /pricing command!">
+                                    <button class="btn btn-danger btn-sm" onclick="this.parentElement.remove()">X</button>
+                                </div>
+                                <div class="reply-row">
+                                    <input type="text" placeholder="Trigger keyword..." class="trigger-input" value="support">
+                                    <input type="text" placeholder="Auto reply..." class="reply-input" value="For support, please email us at support@example.com or describe your issue.">
+                                    <button class="btn btn-danger btn-sm" onclick="this.parentElement.remove()">X</button>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline btn-sm" onclick="addAutoReply()" style="margin-top: 8px;">+ Add Auto-Reply</button>
+                        </div>
+                    </div>
+
+                    <!-- Scheduled Messages Tab -->
+                    <div class="tab-content" id="tab-schedule">
+                        <div class="builder-panel">
+                            <h2>Scheduled Messages</h2>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">
+                                Send automated messages to users at specific times. (Pro feature)
+                            </p>
+                            <div id="scheduleList">
+                                <div class="command-row schedule-row">
+                                    <input type="text" placeholder="Message to send..." class="schedule-msg" value="Don't forget to check today's crypto update!">
+                                    <input type="time" class="schedule-time" value="09:00">
+                                    <button class="btn btn-danger btn-sm" onclick="this.parentElement.remove()">X</button>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline btn-sm" onclick="addSchedule()" style="margin-top: 8px;">+ Add Schedule</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Chat Preview -->
+                <div>
+                    <div class="builder-panel" style="position: sticky; top: 32px;">
+                        <h2>Live Preview</h2>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 16px;">
+                            Test your bot configuration in real-time.
+                        </p>
+                        <div class="chat-preview" id="chatPreview"></div>
+                        <div class="chat-input-bar">
+                            <input type="text" id="chatInput" placeholder="Type a message to test...">
+                            <button class="btn btn-primary btn-sm" id="chatSendBtn">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/api.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+        // Check auth
+        if (!api._token()) { window.location.href = 'login.html'; }
+
+        // Get bot ID from URL (?id=X)
+        const params = new URLSearchParams(window.location.search);
+        const botId = params.get('id');
+
+        // Load existing bot if editing
+        (async function loadBot() {
+            if (!botId) return;
+            try {
+                const bot = await api.getBot(botId);
+                document.getElementById('botName').value = bot.name;
+                document.getElementById('botToken').value = '';
+                document.getElementById('botDescription').value = bot.description;
+                document.getElementById('welcomeMessage').value = bot.welcome_message;
+                document.getElementById('fallbackMessage').value = bot.fallback_message;
+
+                // Load commands
+                const cmdList = document.getElementById('commandsList');
+                cmdList.innerHTML = '';
+                bot.commands.forEach(cmd => {
+                    const row = document.createElement('div');
+                    row.className = 'command-row';
+                    row.innerHTML = `
+                        <input type="text" placeholder="/command" class="cmd-input" value="${cmd.command}">
+                        <input type="text" placeholder="Bot response..." class="cmd-response" value="${cmd.response}">
+                        <button class="btn btn-danger btn-sm" onclick="this.parentElement.remove()">X</button>
+                    `;
+                    cmdList.appendChild(row);
+                });
+
+                // Load auto-replies
+                const arList = document.getElementById('autoRepliesList');
+                arList.innerHTML = '';
+                bot.auto_replies.forEach(ar => {
+                    const row = document.createElement('div');
+                    row.className = 'reply-row';
+                    row.innerHTML = `
+                        <input type="text" placeholder="Trigger keyword..." class="trigger-input" value="${ar.trigger}">
+                        <input type="text" placeholder="Auto reply..." class="reply-input" value="${ar.reply}">
+                        <button class="btn btn-danger btn-sm" onclick="this.parentElement.remove()">X</button>
+                    `;
+                    arList.appendChild(row);
+                });
+
+                // Load scheduled messages
+                const smList = document.getElementById('scheduleList');
+                smList.innerHTML = '';
+                bot.scheduled_messages.forEach(sm => {
+                    const row = document.createElement('div');
+                    row.className = 'command-row schedule-row';
+                    const timeStr = String(sm.cron_hour).padStart(2, '0') + ':' + String(sm.cron_minute).padStart(2, '0');
+                    row.innerHTML = `
+                        <input type="text" placeholder="Message to send..." class="schedule-msg" value="${sm.message}">
+                        <input type="time" class="schedule-time" value="${timeStr}">
+                        <button class="btn btn-danger btn-sm" onclick="this.parentElement.remove()">X</button>
+                    `;
+                    smList.appendChild(row);
+                });
+            } catch (err) {
+                console.error('Load bot error:', err);
+                alert('Error loading bot: ' + err.message);
+            }
+        })();
+
+        function gatherConfig() {
+            const commands = [];
+            document.querySelectorAll('#commandsList .command-row').forEach(row => {
+                const cmd = row.querySelector('.cmd-input')?.value?.trim();
+                const res = row.querySelector('.cmd-response')?.value?.trim() || '';
+                if (cmd) commands.push({ command: cmd, response: res });
+            });
+
+            const autoReplies = [];
+            document.querySelectorAll('#autoRepliesList .reply-row').forEach(row => {
+                const trigger = row.querySelector('.trigger-input')?.value?.trim();
+                const reply = row.querySelector('.reply-input')?.value?.trim() || '';
+                if (trigger) autoReplies.push({ trigger, reply });
+            });
+
+            const scheduledMessages = [];
+            document.querySelectorAll('#scheduleList .schedule-row').forEach(row => {
+                const msg = row.querySelector('.schedule-msg')?.value?.trim();
+                const time = row.querySelector('.schedule-time')?.value;
+                if (msg && time) {
+                    const [h, m] = time.split(':').map(Number);
+                    scheduledMessages.push({ message: msg, cron_hour: h, cron_minute: m, enabled: true });
+                }
+            });
+
+            return {
+                name: document.getElementById('botName').value,
+                token: document.getElementById('botToken').value,
+                description: document.getElementById('botDescription').value,
+                welcome_message: document.getElementById('welcomeMessage').value,
+                fallback_message: document.getElementById('fallbackMessage').value,
+                commands,
+                auto_replies: autoReplies,
+                scheduled_messages: scheduledMessages,
+            };
+        }
+
+        async function saveBot() {
+            const config = gatherConfig();
+            if (!config.name) { alert('Bot name is required'); return; }
+            if (!config.token && !botId) { alert('BotFather token is required'); return; }
+
+            try {
+                if (botId) {
+                    // Update existing (token is optional on update)
+                    const updatePayload = { ...config };
+                    if (!updatePayload.token) delete updatePayload.token;
+                    await api.updateBot(botId, updatePayload);
+                    await api.startBot(botId);
+                    alert('Bot saved and deployed!');
+                } else {
+                    // Create new
+                    const bot = await api.createBot(config);
+                    await api.startBot(bot.id);
+                    alert('Bot created and deployed! Redirecting...');
+                    window.location.href = 'dashboard.html';
+                }
+            } catch (err) {
+                alert('Error: ' + err.message);
+            }
+        }
+    </script>
+</body>
+</html>

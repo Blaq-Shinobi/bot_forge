@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BotForge - Log In</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="auth-page">
+        <div class="auth-card">
+            <div style="text-align: center; margin-bottom: 8px;">
+                <a href="../index.html" class="logo" style="justify-content: center;">
+                    <span class="logo-icon">&#9881;</span>
+                    <span class="logo-text">BotForge</span>
+                </a>
+            </div>
+            <h1>Welcome back</h1>
+            <p class="subtitle">Log in to manage your bots</p>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 8px;">Log In</button>
+            </form>
+            <p class="auth-footer">
+                Don't have an account? <a href="signup.html">Sign up free</a>
+            </p>
+        </div>
+    </div>
+    <script src="../js/api.js"></script>
+    <script>
+        async function handleLogin(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.disabled = true;
+            btn.textContent = 'Logging in...';
+            try {
+                await api.login(
+                    document.getElementById('email').value,
+                    document.getElementById('password').value
+                );
+                window.location.href = 'dashboard.html';
+            } catch (err) {
+                alert(err.message);
+                btn.disabled = false;
+                btn.textContent = 'Log In';
+            }
+        }
+    </script>
+</body>
+</html>

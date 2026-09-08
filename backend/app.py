@@ -59,6 +59,11 @@ async def paystack_webhook(request: Request):
     import json
     payload = await request.body()
 
+    signature = request.headers.get("x-paystack-signature", "")
+    if not billing.verify_webhook_signature(payload, signature):
+        logger.warning("Rejected Paystack webhook with missing/invalid signature")
+        raise HTTPException(status_code=401, detail="Invalid signature")
+
     try:
         event = json.loads(payload)
     except Exception as e:

@@ -2,6 +2,8 @@
 Designed for Nigerian founders. Docs: https://paystack.com/docs/api/
 """
 
+import hashlib
+import hmac
 import httpx
 import logging
 from sqlalchemy import select
@@ -15,6 +17,30 @@ settings = get_settings()
 
 # Paystack API base
 PAYSTACK_API = "https://api.paystack.co"
+
+
+def verify_webhook_signature(payload: bytes, signature: str) -> bool:
+    """Verify a Paystack webhook actually came from Paystack.
+
+    Paystack signs the raw request body with HMAC-SHA512 using your secret
+    key and sends the hex digest in the X-Paystack-Signature header. Without
+    this check, anyone who finds the webhook URL can POST a fake
+    charge.success event and grant themselves (or anyone) a paid plan for
+    free - see https://paystack.com/docs/payments/webhooks/ for the spec.
+
+    hmac.compare_digest is used instead of `==` so the comparison takes the
+    same time regardless of where the strings first differ - a plain `==`
+    leaks timing information an attacker could use to guess the signature
+    one byte at a time.
+    """
+    if not signature or not settings.paystack_secret_key:
+        return False
+    expected = hmac.new(
+        settings.paystack_secret_key.encode("utf-8"),
+        payload,
+        hashlib.sha512,
+    ).hexdigest()
+    return hmac.compare_digest(expected, signature)
 
 
 def _headers() -> dict:

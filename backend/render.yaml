@@ -7,3 +7,9 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
+      - key: DEBUG
+        value: "false"
+      - key: SECRET_KEY
+        sync: false  # set manually in the Render dashboard - never commit this value
+      - key: PAYSTACK_SECRET_KEY
+        sync: false  # required for webhook signature verification to work at all

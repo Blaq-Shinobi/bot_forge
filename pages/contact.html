@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BotForge - Contact</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">&#9881;</span>
+                <span class="logo-text">BotForge</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html#features">Features</a>
+                <a href="index.html#pricing">Pricing</a>
+                <a href="docs.html">Docs</a>
+                <a href="blog.html">Blog</a>
+                <a href="pages/login.html" class="btn btn-ghost">Log In</a>
+                <a href="pages/signup.html" class="btn btn-primary">Start Free</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Contact</h1>
+            <p>Question, bug, or just stuck on something? Reach out below.</p>
+        </div>
+    </section>
+
+    <section class="page-body">
+        <div class="container">
+            <div class="content-card" id="formView">
+                <span class="contact-email">Prefer email? Write to <a href="mailto:hello@botforge.io">hello@botforge.io</a> <em>(replace with your real support address)</em>.</span>
+                <h2>Send a message</h2>
+                <p>We'll get back to you as soon as we can.</p>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="What's up?" required style="min-height: 120px;"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-lg" id="contactSubmitBtn">Send Message</button>
+                    <div id="contactError" style="display:none; margin-top: 14px; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.85rem;">
+                        Something went wrong. Please try again, or email us directly.
+                    </div>
+                </form>
+            </div>
+
+            <div class="content-card" id="successView" style="display:none; text-align:center;">
+                <div style="width:56px;height:56px;background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:26px;color:var(--success);">&#10003;</div>
+                <h2>Message sent</h2>
+                <p>Thanks for reaching out - we'll reply by email soon.</p>
+                <a href="index.html" class="btn btn-outline" style="margin-top: 10px;">Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">&#9881;</span>
+                    <span class="logo-text">BotForge</span>
+                </a>
+                <p>Build Telegram bots without writing a single line of code.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="index.html#features">Features</a>
+                    <a href="index.html#pricing">Pricing</a>
+                    <a href="index.html#faq">FAQ</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="docs.html">Documentation</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="templates.html">Templates</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 BotForge. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Uses the same Formspree pattern as pages/upgrade.html.
+        // Replace this with your OWN Formspree endpoint (formspree.io) -
+        // this placeholder ID will not deliver messages anywhere.
+        const CONTACT_FORM_ENDPOINT = "https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID";
+
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('contactSubmitBtn');
+        const errorMsg = document.getElementById('contactError');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            errorMsg.style.display = 'none';
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            try {
+                const res = await fetch(CONTACT_FORM_ENDPOINT, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (res.ok) {
+                    document.getElementById('formView').style.display = 'none';
+                    document.getElementById('successView').style.display = 'block';
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (err) {
+                errorMsg.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+            }
+        });
+    </script>
+</body>
+</html>

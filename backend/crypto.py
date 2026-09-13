@@ -82,7 +82,8 @@ async def get_price(symbol: str) -> str:
                 f"💰 Price: {price_str}\n"
                 f"📈 24h: {change_str}\n"
                 f"🏦 Market Cap: {mcap_str}\n\n"
-                f"Source: CoinGecko • {datetime.now(timezone.utc).strftime('%H:%M UTC')}"
+                f"Source: CoinGecko • {datetime.now(timezone.utc).strftime('%H:%M UTC')}\n"
+                f"ℹ️ Info only, not financial advice."
             )
     except Exception as e:
         logger.error(f"Price fetch error for {symbol}: {e}")
@@ -134,6 +135,7 @@ async def get_market_overview() -> str:
 
             lines.append(f"\n⏰ {datetime.now(timezone.utc).strftime('%b %d, %H:%M UTC')}")
             lines.append(fg_text)
+            lines.append("\n\nℹ️ Info only, not financial advice.")
 
             return "\n".join(lines)
     except Exception as e:
@@ -175,6 +177,7 @@ async def get_top_movers() -> str:
                 lines.append(f"  ▼ {sym}: {chg:.2f}%")
 
             lines.append(f"\n⏰ {datetime.now(timezone.utc).strftime('%b %d, %H:%M UTC')}")
+            lines.append("\nℹ️ Info only, not financial advice.")
 
             return "\n".join(lines)
     except Exception as e:

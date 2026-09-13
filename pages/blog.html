@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BotForge - Blog</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">&#9881;</span>
+                <span class="logo-text">BotForge</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html#features">Features</a>
+                <a href="index.html#pricing">Pricing</a>
+                <a href="docs.html">Docs</a>
+                <a href="blog.html">Blog</a>
+                <a href="pages/login.html" class="btn btn-ghost">Log In</a>
+                <a href="pages/signup.html" class="btn btn-primary">Start Free</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Blog</h1>
+            <p>Notes on building bots, running BotForge, and using them responsibly.</p>
+        </div>
+    </section>
+
+    <section class="page-body">
+        <div class="container">
+            <div class="blog-list">
+                <article class="blog-post-card">
+                    <div class="blog-meta">August 2026 &middot; The BotForge Team</div>
+                    <h2>Market bots: information vs. financial advice</h2>
+                    <p>It's easy for a bot that reports live prices to start feeling like it's telling you what to do - especially once you add a command called <code>/signals</code>. It isn't, and it's worth being deliberate about that line.</p>
+                    <p>A market-data bot can tell you what's happening: the price right now, how sentiment has shifted, which coins moved the most today. What it can't do is know your finances, your risk tolerance, or your goals - which is exactly what real financial advice requires. Commentary like "watching resistance" is a description of a chart pattern, not a recommendation.</p>
+                    <p>If you're building or deploying a bot like this, say so plainly in the bot itself, not just in a Terms of Service page nobody reads. A one-line disclaimer in your welcome message costs you nothing and means a user reading your bot's output at 2am knows exactly what they're looking at: information to think with, not a signal to act on.</p>
+                </article>
+
+                <article class="blog-post-card">
+                    <div class="blog-meta">July 2026 &middot; The BotForge Team</div>
+                    <h2>5 Telegram bot ideas beyond customer support</h2>
+                    <p>Most people's first bot idea is FAQ auto-replies, and that's a great start - but the same building blocks (commands, keyword replies, scheduled messages) cover a lot more ground:</p>
+                    <ul>
+                        <li><strong>Daily reminders</strong> - a scheduled message at a fixed time, for habits, medication, or standups.</li>
+                        <li><strong>Community welcomes</strong> - an auto-reply that fires on "hi" or "join" to greet new members with house rules.</li>
+                        <li><strong>Event RSVPs</strong> - commands like <code>/rsvp</code> paired with a scheduled reminder the morning of.</li>
+                        <li><strong>Market or price updates</strong> - see CryptoPulseBot in <a href="templates.html">Templates</a> for a live example.</li>
+                        <li><strong>Feedback collection</strong> - a fallback message that doubles as an open invitation: "Type anything and it'll reach the team."</li>
+                    </ul>
+                    <p>None of these need custom code - just a different combination of the same commands, auto-replies, and schedules already in the Builder.</p>
+                </article>
+
+                <article class="blog-post-card">
+                    <div class="blog-meta">June 2026 &middot; The BotForge Team</div>
+                    <h2>Why we built BotForge</h2>
+                    <p>Setting up a Telegram bot the "normal" way means writing a small server, hosting it somewhere that stays online, and wiring up polling or webhooks before you've even gotten to the part where it does something useful. That's a reasonable ask for a developer and a wall for everyone else.</p>
+                    <p>BotForge exists to skip straight to the useful part: describe what you want your bot to say and when, click deploy, and it's running - hosted, monitored, and restartable from a dashboard instead of a terminal. We're still early, and this Documentation and Blog you're reading are themselves part of that first pass. If something's missing or confusing, that's useful to know - see the <a href="contact.html">Contact</a> page.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">&#9881;</span>
+                    <span class="logo-text">BotForge</span>
+                </a>
+                <p>Build Telegram bots without writing a single line of code.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="index.html#features">Features</a>
+                    <a href="index.html#pricing">Pricing</a>
+                    <a href="index.html#faq">FAQ</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="docs.html">Documentation</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="templates.html">Templates</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 BotForge. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

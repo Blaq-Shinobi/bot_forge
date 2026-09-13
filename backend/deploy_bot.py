@@ -17,14 +17,14 @@ bot_config = {
     "name": "CryptoPulseBot",
     "token": os.environ.get("CRYPTOPULSE_BOT_TOKEN", ""),  # get a fresh token from @BotFather
     "description": "Real-time crypto signals, prices, and market alerts.",
-    "welcome_message": "Welcome to CryptoPulse! I track crypto markets for you.\n\nUse these commands:\n/price BTC - Check price\n/market - Market overview\n/signals - Latest signals\n/help - All commands",
+    "welcome_message": "Welcome to CryptoPulse! I track crypto markets for you.\n\nUse these commands:\n/price BTC - Check price\n/market - Market overview\n/signals - Latest signals\n/help - All commands\n\n\u26a0\ufe0f I share market info, not financial advice - always do your own research.",
     "fallback_message": "I didn't catch that. Try /help to see what I can do, or /price BTC to check a coin!",
     "commands": [
-        {"command": "/start", "response": "Hey! I'm CryptoPulse - your crypto market assistant.\n\nTry:\n/price BTC - Bitcoin price\n/price ETH - Ethereum price\n/market - Market overview\n/signals - Latest trading signals\n/help - All commands"},
+        {"command": "/start", "response": "Hey! I'm CryptoPulse - your crypto market assistant.\n\nTry:\n/price BTC - Bitcoin price\n/price ETH - Ethereum price\n/market - Market overview\n/signals - Latest trading signals\n/help - All commands\n\n\u26a0\ufe0f Info only, not financial advice."},
         {"command": "/help", "response": "Available commands:\n\n/price <coin> - Check coin price (BTC, ETH, SOL, etc.)\n/market - Full market overview\n/signals - Latest trading signals\n/alerts - Set price alerts\n/about - About CryptoPulse"},
         {"command": "/price", "response": "To check a price, type: /price BTC, /price ETH, /price SOL, etc.\n\nCurrently tracking: BTC, ETH, SOL, BNB, XRP, ADA, DOGE, AVAX"},
         {"command": "/market", "response": "Market Overview:\n\nThe crypto market is dynamic right now! Check individual coins with /price <coin>.\n\nFear & Greed Index updates available via /signals.\nFor real-time data, upgrade to Pro for live API integration!"},
-        {"command": "/signals", "response": "Latest Signals:\n\nBTC - Neutral (watching $65K support)\nETH - Bullish (breaking resistance)\nSOL - Bullish (strong momentum)\n\nUpgrade to Pro for real-time automated signals with entry/exit points!"},
+        {"command": "/signals", "response": "Latest Signals:\n\nBTC - Neutral (watching $65K support)\nETH - Bullish (breaking resistance)\nSOL - Bullish (strong momentum)\n\nUpgrade to Pro for real-time automated signals with entry/exit points!\n\n\u26a0\ufe0f These are informational talking points, not trade recommendations. Not financial advice."},
         {"command": "/alerts", "response": "Price Alerts (Pro Feature):\n\nSet custom alerts like:\n- BTC drops below $60,000\n- ETH hits $4,000\n- SOL rises 10% in 24h\n\nUpgrade to Pro at botforge.io to unlock alerts!"},
         {"command": "/about", "response": "CryptoPulse by BotForge\n\nI help you stay on top of crypto markets with real-time prices, signals, and alerts.\n\nBuilt with BotForge - the no-code Telegram bot builder.\nVisit botforge.io to build your own bot!"},
     ],
